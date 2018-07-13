@@ -2,7 +2,9 @@ var cards = ["Jeff","Dancing","Beer","Sonoma","Patrick","Stale Cookies"];
 
 var redTeam = 'red';
 var blueTeam = 'blue';
+var nowUp = 1;
 
+insertTeamName();
 var currentTeam = redTeam;
 
 var teamScore = {}
@@ -19,7 +21,22 @@ var currentStageIndex = 0;
 
 var timer = setInterval(timerLogic, 1000);
 
+
+
 updateTeamView();
+
+function insertTeamName() {
+	var teamArr = window.location.search.slice(1).split('&');
+	var teamObj = teamArr.reduce(function(obj,str) {
+		var keyval = str.split('=');
+		obj[keyval[0]] = keyval[1];
+		return obj;
+	}, {})
+	if(teamObj.hasOwnProperty('team1') && teamObj.hasOwnProperty('team2')) {
+		redTeam = teamObj.team1;
+		blueTeam = teamObj.team2;
+	}
+}
 
 function timerLogic(){
 	//if curTime equals zero
@@ -67,6 +84,7 @@ function endRound() {
 	//set new current Team
 	currentTeam === redTeam ? currentTeam = blueTeam : currentTeam = redTeam;
 	//update the team span element
+	nowUp = nowUp === 1 ? 2 : 1;
 	//reset timer
 	setTimer(60);
 	updateTeamView();
@@ -101,7 +119,7 @@ function gotItClick(){
 		// add point to current team variable
 		teamScore[currentTeam]++;
 		// update view of current team element
-		document.getElementById(`team-${currentTeam}-score`).innerText = teamScore[currentTeam];
+		document.getElementById(`team-${nowUp}-score`).innerText = teamScore[currentTeam];
 	//if there are no cards left
 	if(currentCardIndex === cards.length - 1) {
 		//end the current stage
@@ -174,6 +192,8 @@ function takeUserInput() {
 	cards.push(document.getElementById("user-input").value);
 	console.log(cards);
 }
+
+
 
 
 
