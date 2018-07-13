@@ -1,0 +1,56 @@
+<html>
+<!--
+change names dispayed
+update view of cards
+input from users(cards);
+enter user team names
+
+-->
+
+
+
+	<body> 
+		<h3>
+			<span id=team></span>'s turn
+		</h3>
+
+		<h1 hidden id="current-card">
+			Current Card
+		</h1>
+
+		<button id="start-game" onclick="startGame()">Start Game!</button>
+		<button id="got-it" hidden>Got it</button>
+
+
+		<div>
+			Timer: <span id="timer">placeholder</span>
+		</div>
+
+		<div>
+			Red team score: <span id="team-red-score">0</span>
+		</div>
+
+		<div>
+			Blue team score: <span id="team-blue-score">0</span>
+		</div>
+
+		<div>
+			Card: <span id="card-current-num">0</span>/<span id="card-total-num">0</span>
+		</div>
+
+		<div>
+			Stage: <span id="current-stage">currentStage</span>
+		</div>
+
+
+
+
+		<script type="text/javascript" src="game.js"></script>
+
+		<button id="admin" onclick="adminEndRound();">Admin End Round!</button>
+
+	</body>
+
+
+
+</html>
